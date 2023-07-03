@@ -15,9 +15,11 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon.png">
@@ -57,9 +59,10 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                         <th>Link</th>
                         <th>Estado</th>
                         <th>Utilizador</th>
-                        <th>Created At</th>
-                        <th>Updated At</th>
-                        <th>Action</th>
+                        <th>Criado em</th>
+                        <th>Atualizado em</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,7 +77,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                     }
 
                     // Fetch data from the exames table get the username by the user id
-                    $query = "SELECT exames.id, exames.link, exames.estado, exames.userId, exames.created_at, exames.updated_at, users.username FROM exames INNER JOIN users ON exames.userId = users.id";
+                    $query = "SELECT exames.id, exames.link, exames.estado, exames.userId, exames.created_at, exames.updated_at, users.username, users.id FROM exames INNER JOIN users ON exames.userId = users.id ORDER BY exames.id DESC";
                     $result = mysqli_query($conn, $query);
 
                     // Loop through the result and display data in rows
@@ -86,6 +89,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                         echo "<td>" . $row['username'] . "</td>";
                         echo "<td>" . $row['created_at'] . "</td>";
                         echo "<td>" . $row['updated_at'] . "</td>";
+                        echo '<td><a href="download-exame.php?id=' . $row['userId'] . '" class="btn btn-primary btn-sm">Download</a></td>';
                         echo '<td><a href="delete-exame.php?id=' . $row['id'] . '" class="btn btn-danger btn-sm">Eliminar</a></td>';
                         echo "</tr>";
                     }

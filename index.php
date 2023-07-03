@@ -37,8 +37,9 @@ if (!isset($_SESSION['username'])) {
         }
     </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
@@ -121,41 +122,42 @@ if (!isset($_SESSION['username'])) {
                 <div class="container-fluid" style="margin-top: 80px;">
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
-                            <div class="card text-center">
-                                <div class="card-body">
+                            <div class="card text-center" style="width: 100%;">
+                                <div class="card-body" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
                                     <h5 class="card-title">Exame</h5>
-                                    <?php if ($num_rows > 0) {
-                                        // If there are pending exams, display resume buttons
-                                        while ($row = mysqli_fetch_assoc($result)) {
-                                            $link = $row['link'];
-                                    ?>
+                                    <div class="row">
+                                        <?php if ($num_rows > 0) {
+                                            // If there are pending exams, display resume buttons
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                $link = $row['link'];
+                                        ?>
+                                                <div class="input-group mb-3" style="padding: 10px;">
+                                                    <a href="exame.php?link=<?php echo $link; ?>" class="btn btn-primary" style="padding: 10px; width: 100%;">Resumir Exame</a>
+                                                </div>
+                                            <?php } ?>
+                                        <?php } else { ?>
                                             <div class="input-group mb-3">
-                                                <a href="exame.php?link=<?php echo $link; ?>" class="btn btn-primary">Retomar</a>
+                                                <input type="text" class="form-control" id="exam-link" placeholder="Exame Link" aria-label="Exam Link" aria-describedby="start-btn" required>
+                                                <button class="btn btn-primary" type="button" id="start-btn">Iniciar</button>
                                             </div>
                                         <?php } ?>
-                                    <?php } else { ?>
-                                        <div class="input-group mb-3">
-                                            <input type="text" class="form-control" id="exam-link" placeholder="Exame Link" aria-label="Exam Link" aria-describedby="start-btn" required>
-                                            <button class="btn btn-primary" type="button" id="start-btn">Iniciar</button>
-                                        </div>
-                                    <?php } ?>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <script>
-                    document.getElementById("start-btn").addEventListener("click", function() {
-                        var examLink = document.getElementById("exam-link").value;
-                        if (examLink !== "") {
-                            window.location.href = "exame.php?link=" + examLink;
-                        }
-                    });
-                </script>
-            <?php } ?>
+                    <script>
+                        document.getElementById("start-btn").addEventListener("click", function() {
+                            var examLink = document.getElementById("exam-link").value;
+                            if (examLink !== "") {
+                                window.location.href = "exame.php?link=" + examLink;
+                            }
+                        });
+                    </script>
+                <?php } ?>
+                </div>
         </div>
-    </div>
 </body>
 
 </html>
