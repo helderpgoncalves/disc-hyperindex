@@ -14,27 +14,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $estado = $_POST['estado'];
     $userId = $_POST['userId'];
 
-    // Connect to the database
-    $conn = mysqli_connect("localhost", "root", "", "disc");
-
-    // Check connection
-    if (mysqli_connect_errno()) {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        exit();
-    }
-
     // Insert the new exame into the exames table
     $query = "INSERT INTO exames (link, estado, userId) VALUES ('$link', '$estado', $userId)";
-    if (mysqli_query($conn, $query)) {
+    if (mysqli_query($con, $query)) {
         // Redirect to the exames page after successful creation
         header("Location: exames.php");
         exit();
     } else {
-        echo "Error: " . mysqli_error($conn);
+        echo "Error: " . mysqli_error($cnn);
     }
 
     // Close the database connection
-    mysqli_close($conn);
+    mysqli_close($con);
 }
 ?>
 
@@ -92,18 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <select class="form-select" id="userId" name="userId" required>
                         <option value="">Selecionar Utilizador</option>
                         <?php
-                        // Connect to the database
-                        $conn = mysqli_connect("localhost", "root", "", "disc");
-
-                        // Check connection
-                        if (mysqli_connect_errno()) {
-                            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                            exit();
-                        }
-
                         // Fetch data from the users table
                         $query = "SELECT * FROM users";
-                        $result = mysqli_query($conn, $query);
+                        $result = mysqli_query($con, $query);
 
                         // Loop through the result and display options
                         while ($row = mysqli_fetch_assoc($result)) {
@@ -111,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         }
 
                         // Close the database connection
-                        mysqli_close($conn);
+                        mysqli_close($con);
                         ?>
                     </select>
                 </div>

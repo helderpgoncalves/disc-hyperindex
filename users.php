@@ -57,18 +57,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                 </thead>
                 <tbody>
                     <?php
-                    // Connect to the database
-                    $conn = mysqli_connect("localhost", "root", "", "disc");
-
-                    // Check connection
-                    if (mysqli_connect_errno()) {
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        exit();
-                    }
-
                     // Fetch data from the users table
                     $query = "SELECT * FROM users";
-                    $result = mysqli_query($conn, $query);
+                    $result = mysqli_query($con, $query);
 
                     // Loop through the result and display data in rows
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -84,7 +75,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                     }
 
                     // Close the database connection
-                    mysqli_close($conn);
+                    mysqli_close($con);
                     ?>
                 </tbody>
             </table>

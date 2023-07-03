@@ -56,9 +56,9 @@ and password='" . md5($password) . "'";
             <form class="login-form" action="" method="post" name="login">
                 <h1>Login</h1>
                 <label for="username">Username</label>
-                <input type="text" name="username" required>
+                <input type="text" name="username" required placeholder="Nome de utilizador">
                 <label for="password">Password</label>
-                <input type="password" name="password" required>
+                <input type="password" name="password" required placeholder="Password">
                 <input type="submit" value="Login">
             </form>
         </div>

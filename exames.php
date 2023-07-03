@@ -66,18 +66,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                 </thead>
                 <tbody>
                     <?php
-                    // Connect to the database
-                    $conn = mysqli_connect("localhost", "root", "", "disc");
-
-                    // Check connection
-                    if (mysqli_connect_errno()) {
-                        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-                        exit();
-                    }
-
                     // Fetch data from the exames table get the username by the user id
                     $query = "SELECT exames.id, exames.link, exames.estado, exames.userId, exames.created_at, exames.updated_at, users.username, users.id FROM exames INNER JOIN users ON exames.userId = users.id ORDER BY exames.id DESC";
-                    $result = mysqli_query($conn, $query);
+                    $result = mysqli_query($con, $query);
 
                     // Loop through the result and display data in rows
                     while ($row = mysqli_fetch_assoc($result)) {
@@ -94,7 +85,7 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
                     }
 
                     // Close the database connection
-                    mysqli_close($conn);
+                    mysqli_close($con);
                     ?>
                 </tbody>
             </table>
