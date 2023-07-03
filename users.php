@@ -15,8 +15,9 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <!-- favicons -->
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
@@ -34,8 +35,8 @@ if (!isset($_SESSION['username']) || $_SESSION['username'] != 'admin') {
             <div> <a href="index.php" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span class="nav_logo-name">DISC</span> </a>
                 <!-- if user is admin -->
                 <div class="nav_list"> <a href="index.php" class="nav_link"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> <?php
-                                                                                                                                                            if ($_SESSION['username'] == 'admin') { ?><a href="users.php" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Utilizadores</span> </a>
-                    <a href="exames.php" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Exames</span> </a> <?php } ?>
+                                                                                                                                                                    if ($_SESSION['username'] == 'admin') { ?><a href="users.php" class="nav_link active"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Utilizadores</span> </a>
+                        <a href="exames.php" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Exames</span> </a> <?php } ?>
                 </div>
             </div> <a href="logout.php" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Sair</span> </a>
         </nav>
